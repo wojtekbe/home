@@ -1,0 +1,73 @@
+#!/bin/bash
+HIST=~/.dmenu_history
+
+add()
+{
+	if ! cat $HIST | grep "$*" > /dev/null; then
+		echo "$*" >> $HIST
+	fi
+}
+
+exe=$(cat $HIST | dmenu ${1+"$@"} -p ">")
+echo "[$(date)] dmenu-my: $exe"
+
+case $exe in
+http*|www*)
+	if curl --output /dev/null --silent --head --fail $exe
+	then
+		add $exe
+		xdg-open $exe
+	fi
+	;;
+
+notatki)
+	note=`ls -t ~/notes | dmenu -i ${1+"$@"} -p "NOTES:"`
+	if [ "$note" != "" ]; then
+		$XEDITOR ~/notes/"$note"
+	fi
+	;;
+
+"~"*|\/*)
+	if [ -d "$exe" ]; then
+		add $exe
+		pcmanfm $exe
+	fi
+	;;
+
+fm)
+	DIRS="/home/wojtekbe/dev /home/wojtekbe/doc /home/wojtekbe/Dropbox"
+	FILE=`(ls ~ && find $DIRS) | dmenu ${1+"$@"} -l 8 -nf "#FFFFFF" -nb "#404040" -sb "#FFCC00" -sf "#101010"`
+	if [ "$FILE" != "" ]; then
+		pcmanfm "$FILE"
+	fi
+	;;
+
+#duckduckgo search engines
+!*)
+    add $(echo $exe | cut -d' ' -f1)
+    str=`echo $exe | sed 's/\ /+/g'`
+    xdg-open "https://duckduckgo.com/?q=$str"
+    ;;
+
+#firefox bookmarks
+ff)
+    U=`firefox_bookmarks | dmenu -i ${1+"$@"} -l 7 -p "BOOKMARKS:" | awk '{print $(NF)}'`
+	if [ "$U" != "" ]; then
+        xdg-open "$U"
+	fi
+    ;;
+
+*)
+	if which `echo $exe | awk '{print $1}'` > /dev/null; then
+		add $exe
+		exec $exe
+	else
+		if [ "$exe" == "" ]; then
+			echo "Nothing to do..."
+		else
+			str=`echo $exe | sed 's/\ /+/g'`
+			xdg-open "https://duckduckgo.com/?q=$str"
+		fi
+	fi
+	;;
+esac

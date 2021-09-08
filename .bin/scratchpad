@@ -1,0 +1,28 @@
+#!/bin/bash
+
+wid=$(xdotool search --name 'scratchpad')
+
+show() {
+	xdotool windowmap $wid
+	xdotool windowfocus $wid
+}
+
+hide() {
+	xdotool windowunmap $wid
+}
+
+(tmux list-sessions | grep "scratchpad:") || tmux new-session -A -d -s scratchpad
+
+if [ -z "$wid" ]; then
+	#creating pad window
+	#urxvt -t scratchpad -e tmux attach-session -t scratchpad
+	st -t scratchpad -e tmux attach-session -t scratchpad
+	$(show)
+else
+	#pad window exists
+	if [ -z "$(xdotool search --onlyvisible --name 'scratchpad' 2>/dev/null)" ]; then
+		$(show)
+	else
+		$(hide)
+	fi
+fi

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while true; do
+    xsetroot -name "$(status.sh)"
+	sleep 2
+done

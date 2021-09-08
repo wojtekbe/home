@@ -1,0 +1,25 @@
+# everything
+/*
+
+# but
+!.bin
+!.config/dunst
+!.config/fish
+!.config/openbox
+!.config/sway
+!.config/sxiv
+!.confug/zathura
+!.local/share/fonts
+!.mplayer
+!dev/dwm-git/**
+!etc/
+!.Xdefaults
+!.Xmodmap
+!.bash_profile
+!.gitconfig
+!.gitignore
+!.tigrc
+!.tmux.conf
+!.vimrc
+!.xinitrc
+!.zshrc

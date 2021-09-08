@@ -1,0 +1,4 @@
+keycode 91 = KP_Delete KP_Decimal
+clear Lock
+keycode 66 = Escape NoSymbol Escape
+keycode 49 = F12 asciitilde grave asciitilde grave

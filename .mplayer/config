@@ -1,0 +1,56 @@
+[default]
+#
+# MPlayer configuration file
+#
+# Configuration files are read system-wide from /usr/local/etc/mplayer.conf
+# and per user from ~/.mplayer/config, where per-user settings override
+# system-wide settings, all of which are overrriden by the command line.
+#
+# The configuration file settings are the same as the command line
+# options without the preceding '-'.
+#
+# See the CONFIGURATION FILES section in the man page
+# for a detailed description of the syntax.
+
+##################
+# video settings #
+##################
+vo=xv
+#vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
+vf=pp,expand=:::::16/10:
+monitoraspect=16/10
+##################
+# audio settings #
+##################
+channels = 6
+softvol = 1
+softvol-max=200
+ao = pulse
+#af=surround=0,volume=-5:0
+##################
+#       TV       #
+##################
+#tv = "driver=v4l2:device=/dev/video1:input=1:norm=PAL"
+##################
+# other settings #
+##################
+slang = pl
+alang = pl
+##########
+# Napisy #
+##########
+font = /usr/share/fonts/TTF/freefont/arial.ttf
+subcp = cp1250
+#subfont-encoding=cp1250
+subfont-autoscale = 1
+subfont-osd-scale = 5
+subfont-text-scale = 7
+#sub-bg-alpha = 100
+#sub-bg-color
+subfont-blur = 1
+spugauss=3.0
+#subfont-outline = 8
+subpos = 90
+#subwidth = 10
+#subalign = 2
+cdrom-device = /dev/sr0

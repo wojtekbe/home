@@ -1,0 +1,30 @@
+#!/bin/bash
+
+CMD=`echo -e "shutdown\npoweroff\nstandby\nlogout\nreboot\ntop\nslock\nsuspend\nhibernate" | dmenu ${1+"$@"}`
+
+case $CMD in
+logout)
+	pkill X
+	;;
+shutdown|poweroff)
+	sudo systemctl poweroff
+	;;
+reboot)
+	sudo systemctl reboot
+	;;
+top)
+	urxvt -e "htop"
+	;;
+slock)
+	slock
+	;;
+standby)
+	xset dpms force standby
+	;;
+suspend)
+	systemctl suspend
+	;;
+hibernate)
+	systemctl hibernate
+	;;
+esac

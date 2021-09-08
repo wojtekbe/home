@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#shopt -s nullglob
+
+if [[ ! -f $1 ]]; then
+	echo "$0: first argument is not a file" >&2
+	exit 1
+fi
+
+file=$(basename -- "$1")
+dir=$(dirname -- "$1")
+arr=()
+shift
+
+cd -- "$dir"
+
+for i in *; do
+	[[ -f $i ]] || continue
+		arr+=("$i")
+	[[ "$i" == "$file" ]] && c=$((${#arr[@]} - 1))
+done
+
+#echo "file= $file"
+#echo
+#echo ${arr[@]:c} 
+#echo
+#echo ${arr[@]:0:c}
+
+exec feh -Z -g 800x600 "$@" -- "${arr[@]:c}" "${arr[@]:0:c}"

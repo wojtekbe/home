@@ -1,0 +1,29 @@
+[http]
+sslVerify=false
+[user]
+name=Wojciech Bieganski
+email=wbie@duck.com
+[color]
+diff=auto
+[merge]
+	tool = vimdiff
+[alias]
+	st = status
+	d = diff
+	b = branch -a
+	br = branch
+	cm = commit -m
+	l = log --pretty --oneline --decorate
+[push]
+	default = simple
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[pull]
+	rebase = false
+[diff]
+	tool = meld
+[format]
+    pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s

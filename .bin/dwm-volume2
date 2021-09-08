@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PIPE="/tmp/dvolpipe"
+read -a IDX <<< $(pactl list short sinks | tail -n1)
+SINK_ID=${IDX[0]}
+
+echo $SINK_ID
+
+pactl set-sink-volume $SINK_ID $1

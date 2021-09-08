@@ -1,0 +1,106 @@
+!Xcursor.theme: handhelds
+!Xcursor.theme: Oxygen_Red-argentina
+!Xcursor.theme: Oxygen_Obsidian-hc
+!Xcursor.theme: Oxygen_Zion
+! fonty Xft ------------------------------------------------------------------
+Xft.dpi: 96
+Xft.autohint: 0
+Xft.antialias: 1
+Xft.hinting: 1
+Xft.lcdfilter: lcddefault
+Xft.hintstyle:  hintslight
+Xft.rgba: rgb
+
+URxvt.depth:          32
+URxvt.transparent:    false
+URxvt.loginShell:     true
+URxvt.internalBorder: 1
+URxvt.lineSpace:      0
+
+URxvt.allow_bold: true
+URxvt.font:       xft:Terminess Powerline:size=9
+URxvt.boldfont:   xft:Terminess Powerline:bold:size=9
+
+URxvt.scrollStyle:  rxvt
+URxvt.scrollBar:    false
+URxvt.cursorBlink:  true
+URxvt.pointerBlank: true
+
+URxvt.perl-ext-common: default,matcher,urxvt-font-size/font-size,curplosion/curplosion,selection
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.cutchars: "`'\"&()*,;<=>?@[]^{|}│$"
+
+URxvt.scrollTtyOutput:   false
+URxvt.scrollTtyKeypress: true
+URxvt.scrollWithBuffer:  true
+URxvt.saveLines:         65535
+
+URxvt.keysym.Control-Up:    \033[1;5A
+URxvt.keysym.Control-Down:  \033[1;5B
+URxvt.keysym.Control-Left:  \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
+URxvt.keysym.M-Up:          \033[1;3A
+URxvt.keysym.M-Down:        \033[1;3B
+URxvt.keysym.M-Left:        \033[1;3D
+URxvt.keysym.M-Right:       \033[1;3C
+
+URxvt.background: rgba:0000/0000/0000/eeee
+!URxvt.background: #181818
+URxvt.foreground: #CCCCCC
+
+URxvt.color0:  #000000
+URxvt.color1:  #FF1B23
+URxvt.color2:  #4E9A06
+URxvt.color3:  #FFCC00
+URxvt.color4:  #304A87
+URxvt.color5:  #ce5c00
+URxvt.color6:  #06989A
+URxvt.color7:  #CCCCCC
+
+URxvt.color8:  #555753
+URxvt.color9:  #EF2929
+URxvt.color10: #8AE234
+URxvt.color11: #FFCC00
+URxvt.color12: #3465a4
+URxvt.color13: #f57900
+URxvt.color14: #34E2E2
+URxvt.color15: #FFFFFF
+
+xpdf.enableFreetype: yes
+xpdf.antialias:      yes
+xpdf.foreground:     white
+xpdf.background:     black
+xpdf.urlCommand:     /usr/bin/firefox %s
+
+xclock.update:     1
+xclock.Foreground: white
+xclock.background: black
+xclock.analog:     true
+
+gnuplot*background:  white
+gnuplot*textColor:   black
+gnuplot*borderColor: black
+gnuplot*axisColor:   black
+gnuplot*line1Color:  red
+gnuplot*line2Color:  green
+gnuplot*line3Color:  blue
+gnuplot*line4Color:  magenta
+gnuplot*line5Color:  cyan
+gnuplot*line6Color:  sienna
+gnuplot*line7Color:  orange
+gnuplot*line8Color:  coral
+
+xterm.font:       -*-terminus-medium-r-*-*-10-*-*-*-*-*-*-*
+xterm.boldfont:   -*-terminus-medium-r-*-*-10-*-*-*-*-*-*-*
+xterm.background: white
+xterm.foreground: black
+
+display.font:        -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
+display.background:  #EAEAEA
+display.foreground:  #040404
+display.bordercolor: #040404
+display.mattecolor:  #EAEAEA
+
+Sxiv.background: #404040
+Sxiv.foreground: #FFCC00

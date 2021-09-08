@@ -1,0 +1,23 @@
+#!/bin/sh
+while read file
+do
+	case "$1" in
+		"C-d")
+			rm "$file" ;;
+		"C-r")
+			convert -rotate 90 "$file" "$file" ;;
+		"C-c")
+			echo -n "$file" | xclip -selection clipboard ;;
+		"C-w")
+			nitrogen --save --set-zoom-fill "$file" ;;
+		"C-s")
+			DIR=`dirname "$file"`
+			mkdir -p "$DIR/★"
+			cp "$file" "$DIR/★/"
+			;;
+		"C-g")
+			gimp "$file" & ;;
+		"C-h")
+			cat ~/.config/sxiv/exec/key-handler ;;
+	esac
+done

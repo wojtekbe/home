@@ -1,0 +1,6 @@
+#!/bin/sh
+bookmarks_folder=~/.mozilla/firefox/wmyog93j.default/weave
+cp -f "${bookmarks_folder}"/bookmarks.sqlite /tmp/bookmarks.sqlite
+
+sqlite3 /tmp/bookmarks.sqlite 'SELECT i.title, u.url FROM items i, urls u WHERE (i.urlId = u.id)' \
+| sed 's/|http/: http/'

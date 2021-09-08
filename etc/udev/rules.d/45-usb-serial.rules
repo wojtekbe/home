@@ -1,0 +1,2 @@
+# serial
+KERNEL=="tty[A-Z]*|pppox*|ircomm*|noz*", GROUP="wojtekbe", MODE="0666"

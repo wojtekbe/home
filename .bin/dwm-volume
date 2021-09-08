@@ -1,0 +1,79 @@
+#!/bin/bash
+#
+# dvolbar - OSD Volume utility
+#
+
+function drawbar {
+    W=$2
+    B=$[100/$W]
+    N_INT=$[$1/$B]
+    N_TENS=$[$1%$B*10/$B]
+    BAR=""
+    for i in $(seq 1 $N_INT); do
+        BAR="$BAR\ue1ca"
+    done
+    if [ $N_INT -ne $B ]; then
+        BAR="$BAR\ue1c$N_TENS"
+        for i in $(seq 1 $[$W-$N_INT-1]); do
+            BAR="$BAR\ue1c0"
+        done
+    fi
+    echo -en "\ue1cb$BAR\ue1cc"
+}
+
+#Customize this stuff
+IF="Master"         # audio channel: Master|PCM
+
+#Probably do not customize
+PIPE="/tmp/dvolpipe"
+
+err() {
+  echo "$1"
+  exit 1
+}
+
+usage() {
+  echo "usage: dvol [option] [argument]"
+  echo
+  echo "Options:"
+  echo "     -i, --increase - increase volume by \`argument'"
+  echo "     -d, --decrease - decrease volume by \`argument'"
+  echo "     -t, --toggle   - toggle mute on and off"
+  echo "     -h, --help     - display this"
+  exit
+}
+
+#Argument Parsing
+case "$1" in
+  '-i'|'--increase')
+    [ -z "$2" ] && err "No argument specified for increase."
+    [ -n "$(tr -d [0-9] <<<$2)" ] && err "The argument needs to be an integer."
+    AMIXARG="${2}%+"
+    ;;
+  '-d'|'--decrease')
+    [ -z "$2" ] && err "No argument specified for decrease."
+    [ -n "$(tr -d [0-9] <<<$2)" ] && err "The argument needs to be an integer."
+    AMIXARG="${2}%-"
+    ;;
+  '-t'|'--toggle')
+    AMIXARG="toggle"
+    ;;
+  ''|'-h'|'--help')
+    usage
+    ;;
+  *)
+    err "Unrecognized option \`$1', see dvol --help"
+    ;;
+esac
+
+#Actual volume changing (readability low)
+AMIXOUT="$(amixer -D pulse set "$IF" "$AMIXARG" | tail -n 1)"
+MUTE="$(cut -d '[' -f 4 <<<"$AMIXOUT")"
+if [ "$MUTE" = "off]" ]; then
+  VOL="0"
+else
+  VOL="$(cut -d '[' -f 2 <<<"$AMIXOUT" | sed 's/%.*//g')"
+fi
+
+#set the statusbar
+xsetroot -name " $(drawbar $VOL 10)$(printf "%02d" $VOL)%"

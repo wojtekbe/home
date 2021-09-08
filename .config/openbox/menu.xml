@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+	<menu id="root-menu" label="Openbox 3">
+		<item label="Firefox">
+			<action name="Execute">
+				<execute>
+					firefox
+				</execute>
+			</action>
+		</item>
+		<item label="nitrogen">
+			<action name="Execute">
+				<execute>
+					nitrogen
+				</execute>
+			</action>
+		</item>
+		<item label="st">
+			<action name="Execute">
+				<execute>st</execute>
+			</action>
+		</item>
+		<separator/>
+		<item label="obconf">
+			<action name="Execute">
+				<execute>
+					obconf
+				</execute>
+			</action>
+		</item>
+		<item label="obmenu">
+			<action name="Execute">
+				<execute>
+					obmenu
+				</execute>
+			</action>
+		</item>
+		<separator/>
+		<item label="Log Out">
+			<action name="Exit">
+			</action>
+		</item>
+	</menu>
+</openbox_menu>
