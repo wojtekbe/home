@@ -1,4 +1,4 @@
-set -x PATH $PATH ~/.bin ~/compilers/gcc-arm-none-eabi-9-2019-q4-major/bin/
+set -x PATH $PATH ~/.bin ~/compilers/gcc-arm-none-eabi-9-2019-q4-major/bin/ ~/xtensa/XtDevTools/install/tools/RI-2021.8-linux/XtensaTools/bin
 set -U fish_greeting
 
 set -U  EDITOR vim
@@ -35,7 +35,7 @@ alias cdf='cd (find -type d | fzf)'
 alias pacmanf='pacman -Slq | fzf --multi --preview \'pacman -Si {1}\' | xargs -ro sudo pacman -S'
 alias vif='vim -p (fzf --multi)'
 alias dus='du -ah . | sort -h | tail -n 100'
-alias openf='xdg-open (fzf)'
+alias openf='xdg-open (fzf) &'
 
 switch (tty)
     case "/dev/tty*"
@@ -46,5 +46,3 @@ set -U fish_prompt_pwd_dir_length 0
 
 export EDITOR=vim
 export BROWSER=chromium
-
-thefuck --alias | source

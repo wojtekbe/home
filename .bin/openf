@@ -1,0 +1,3 @@
+#!/bin/bash
+cd ~
+st -t openf -e bash -c 'nohup xdg-open "$(fzf)"'

@@ -23,6 +23,11 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# to set the default browser:
+#BROWSER="" xdg-settings set default-url-scheme-handler http firefox.desktop
+#BROWSER="" xdg-settings set default-url-scheme-handler https firefox.desktop
+#BROWSER="" xdg-settings set default-web-browser forefox.desktop
+
 #USB Lenovo Keyboard/Trackpoint
 xinput set-prop "pointer:Lenovo ThinkPad Compact USB Keyboard with TrackPoint" "libinput Accel Speed" -0.2
 #Kensington Trackball
@@ -49,7 +54,7 @@ szynszyla) #X1 Carbon 6th Gen
     WM="dwm"
     xinput set-prop "TPPS/2 Elan TrackPoint" "libinput Accel Speed" 0.9
     xinput disable "Synaptics TM3288-011"
-    bash ~/.bin/x1_screen_layout.sh
+    bash ~/.bin/szynszyla_screen_layout.sh
 	nitrogen --restore
     ;;
 esac

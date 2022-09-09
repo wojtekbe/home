@@ -56,6 +56,7 @@ static const Rule rules[] = {
 	{ "Pcmanfm",  NULL,       NULL,         0,            1,           -1 },
 	{ "Thunar",   NULL,       NULL,         0,            1,           -1 },
 	{ "Pavucontrol",NULL,     NULL,         0,            1,           -1 },
+	{ NULL,       NULL,       "openf",      0xFF,         1,           -1 },
 };
 
 /* layout(s) */
@@ -100,8 +101,12 @@ static const char *spotifynextcmd[]  =   { "spotkey", "n", NULL };
 static const char *spotifyprevcmd[]  =   { "spotkey", "p", NULL };
 
 /* backlight */
-static const char *backlightup[] = { "xbacklight", "-inc", "10%", NULL };
-static const char *backlightdown[] = { "xbacklight", "-dec", "10%", NULL };
+static const char *backlight_up_cmd[] = { "xbacklight", "-inc", "10%", NULL };
+static const char *backlight_down_cmd[] = { "xbacklight", "-dec", "10%", NULL };
+
+/* screen lock */
+//static const char *screen_lock_cmd[] = { "xscreensaver-command", "-lock", NULL };
+static const char *screen_lock_cmd[] = { "slock", NULL };
 
 /* shutdown (for power button) */
 static const char *exitdmenucmd[] = { "dmenu-exit", "-fn", dmenufont, "-nb", "#ff0000", "-nf", "#000000", "-sb", "#000000", "-sf", col_gray4, NULL };
@@ -144,6 +149,11 @@ static Key keys[] = {
 	{ 0,                    XF86XK_AudioLowerVolume, spawn,          {.v = voldowncmd } },
 	{ MODKEY,               XK_F12,                  spawn,          {.v = volupcmd } },
 	{ MODKEY,               XK_F11,                  spawn,          {.v = voldowncmd } },
+	{ MODKEY,               XK_Page_Up,              spawn,          {.v = volupcmd } },
+	{ MODKEY,               XK_Page_Down,            spawn,          {.v = voldowncmd } },
+
+	{ 0,                    XF86XK_MonBrightnessUp,  spawn,          {.v = backlight_up_cmd } },
+	{ 0,                    XF86XK_MonBrightnessDown, spawn,         {.v = backlight_down_cmd } },
 
 	{ Mod1Mask,             XK_p,                    spawn,          {.v = spotifytogglecmd } },
 	{ Mod1Mask,             XK_bracketleft,          spawn,          {.v = spotifyprevcmd } },
@@ -157,9 +167,7 @@ static Key keys[] = {
 	{ Mod4Mask,             XK_space,                togglefloating, {0} },
 	{ Mod4Mask,             XK_Return,               spawn,          {.v = termcmd } },
 
-	{ Mod4Mask,             XK_l,                    spawn,          SHCMD("slock") },
-
-	{ 0,                    XF86XK_Display,          spawn,          SHCMD("x1_eDP.sh") },
+	{ Mod4Mask,             XK_l,                    spawn,          {.v = screen_lock_cmd} },
 
 	TAGKEYS(XK_1, 0)
 	TAGKEYS(XK_2, 1)
