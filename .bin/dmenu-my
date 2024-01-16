@@ -23,7 +23,7 @@ http*|www*)
 notatki)
 	note=`ls -t ~/notes | dmenu -i ${1+"$@"} -p "NOTES:"`
 	if [ "$note" != "" ]; then
-		$XEDITOR ~/notes/"$note"
+		ghostwriter ~/notes/"$note"
 	fi
 	;;
 
